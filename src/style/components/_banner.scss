@@ -1,6 +1,35 @@
 .main-banner {
   width: 100%;
-  padding: 5rem 0 6rem;
-  background: red;
-  margin-top: $header-height;
+  padding: 6rem 0 6rem;
+  background: rgba(#000,.9);
+  // margin-top: $header-height;
+  text-align: center;
+  position: relative;
+}
+.img-banner-fondo { 
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: .6;
+  // object-fit: cover;
+  // object-position: 50% 50%;
+}
+.main-banner--content {
+  position: relative;
+}
+.main-banner--title {
+  font-family: 'Open Sans', sans-serif;
+}
+.copy {
+  position: relative;
+  font-size: .8rem;
+  color: #eee;
+  top: -30px;
+}
+.description {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
