@@ -1,0 +1,10 @@
+.main-header {
+  width: 100%;
+  height: $header-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-header--logo {
+  margin: 0;
+}
