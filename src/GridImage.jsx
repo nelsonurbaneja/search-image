@@ -6,6 +6,7 @@ const GridImage = () => {
   const [images, setImages] = useState([])
   const [paginaActual, setPaginaActual] = useState(1)
   const [TotalPaginas, setTotalPaginas] = useState(1)
+  const [totalImagenes, setTotalImagenes] = useState(1)
   const resultadoConsulta = useContext(BusquedaContext)
 
   useEffect( () => {
@@ -19,10 +20,11 @@ const GridImage = () => {
       const data = await response.json()
       setImages(data.hits)
       setTotalPaginas(Math.ceil(data.totalHits / imagenesPorPagina))
+      setTotalImagenes(data.totalHits)
 
       // Scrool smooth
-      const grid = document.querySelector('.grid')
-      grid.scrollIntoView({behavior: 'smooth', block: 'start'})
+      const gridTitle = document.querySelector('.grid-images--title')
+      gridTitle.scrollIntoView({behavior: 'smooth', block: 'start'})
     }
     getImage()
   }, [resultadoConsulta.busqueda, paginaActual])
@@ -40,25 +42,34 @@ const GridImage = () => {
 
   return (
     <>
-    {resultadoConsulta.busqueda === '' ? null : <h4 className="grid-images--title">{TotalPaginas * 30} Imágenes gratis de {resultadoConsulta.busqueda}</h4>}
-    <div className="ed-grid grid-images grid">
-      {images.map(image => (
-        <ImageCard key={image.id} image={image} />
-      ))}
-    </div>
-    <div className="botones">
-      {
-        paginaActual === 1 
-        ? null 
-        : <button onClick={prev.bind(this)} className="button">prev &laquo; {paginaActual - 1}</button>
-      }
-      {resultadoConsulta.busqueda === '' ? null : <p className="pagina-actual">{paginaActual}</p>}
-      {
-        paginaActual === TotalPaginas 
-        ? null
-        : <button onClick={next.bind(this)} className="button">next &raquo; {paginaActual + 1} / {TotalPaginas}</button>
-      }
-    </div>
+    {resultadoConsulta.busqueda === '' ? null : <h4 className="grid-images--title">{totalImagenes} Imágenes gratis de {resultadoConsulta.busqueda}</h4>}
+    {
+      resultadoConsulta.busqueda ?
+      images.length === 0 
+      ? <h4 className="grid-images--title">No hay resultados</h4> 
+      :
+      <>
+      <div className="ed-grid grid-images">
+        {images.map(image => (
+          <ImageCard key={image.id} image={image} />
+        ))}
+      </div>
+      <div className="botones-container">
+        {
+          paginaActual === 1 
+          ? null 
+          : <button onClick={prev.bind(this)} className="button light-color btn-np">prev &laquo; {paginaActual - 1}</button>
+        }
+        {resultadoConsulta.busqueda === '' ? null : <p className="pagina-actual">{paginaActual}</p>}
+        {
+          paginaActual === TotalPaginas 
+          ? null
+          : <button onClick={next.bind(this)} className="button light-color btn-np">next &raquo; {paginaActual + 1} / {TotalPaginas}</button>
+        }
+      </div>
+      </>
+      : null
+      }  
     </>
   )
 }

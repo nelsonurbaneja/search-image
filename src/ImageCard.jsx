@@ -7,7 +7,7 @@ const ImageCard = ({image}) => {
         <a href={image.largeImageURL} rel="noopener noreferrer" target="_blank"> <img className="card-image-img" src={image.largeImageURL} alt={image.tags}/></a>
       </div>
       <div className="content-tags">
-        <p>{image.tags}</p>
+        <p>{image.tags} <span>♥ { image.likes }</span> </p>
       </div>
     </div>
   )

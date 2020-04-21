@@ -3,6 +3,7 @@ import './style/style.scss'
 import Header from './Header'
 import Banner from './Banner'
 import GridImage from './GridImage'
+import Footer from './Footer'
 
 export const BusquedaContext = React.createContext()
 
@@ -11,7 +12,8 @@ const App = () => {
 
    // Recibo la palabra del componente <Banner /> 
   const pasarPalabraAPrincipal = (palabra) => {
-    setBusqueda(palabra)
+    let p = palabra
+    setBusqueda(p)
   }
   return (
     <div className="ed-container">
@@ -20,6 +22,7 @@ const App = () => {
       <BusquedaContext.Provider value={{busqueda: busqueda}}>
         <GridImage />
       </BusquedaContext.Provider>
+      <Footer />
     </div>
   )
 }

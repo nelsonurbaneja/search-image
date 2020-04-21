@@ -7,9 +7,14 @@
   position: relative;
   margin-bottom: 0;
 }
-// .input-buscar {
-//   // padding-right: 0;
-// }
+.input-error {
+  border: 1px solid red;
+  outline: 1px solid red;
+  &::placeholder {
+    color: red;
+    font-weight: bold;
+  }
+}
 .btn-buscar {
   padding-left: 0;
   box-sizing: border-box;
